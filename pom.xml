@@ -51,6 +51,7 @@ limitations under the License.
 	</modules>
 	<properties>
 		<annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
+		<argLine>-Dfile.encoding=UTF-8</argLine>
 		<javadoc.header>&lt;strong&gt;${project.name} ${project.version}&lt;/strong&gt;</javadoc.header>
 		<javadoc.title>&lt;strong&gt;${project.name} ${project.version}&lt;br&gt;API Specification&lt;/strong&gt;</javadoc.title>
 		<javadoc.window.title>${project.name} ${project.version}</javadoc.window.title>
@@ -86,6 +87,34 @@ limitations under the License.
 		</dependencies>
 	</dependencyManagement>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>[2.0,)</versionRange>
+										<goals>
+											<goal>properties</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -154,9 +183,8 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19</version>
+				<version>2.18.1</version>
 				<configuration>
-					<argLine>${argLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.basedir}/src/test/resources/testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
