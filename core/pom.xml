@@ -18,10 +18,10 @@ limitations under the License.
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>net.kiena.utilities</groupId>
-		<artifactId>utilities</artifactId>
-		<version>0.0.0-alpha</version>
+		<artifactId>net.kiena.utilities</artifactId>
+		<version>0-alpha</version>
 	</parent>
-	<artifactId>utilities-core</artifactId>
+	<artifactId>net.kiena.utilities.core</artifactId>
 	<name>Utilities: Core</name>
 	<properties>
 		<netbeans.hint.licensePath>${project.basedir}/../licenseheader.txt</netbeans.hint.licensePath>
