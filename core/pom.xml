@@ -17,12 +17,12 @@ limitations under the License.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>net.kiena.utilities</groupId>
-		<artifactId>net.kiena.utilities</artifactId>
+		<groupId>net.kiena.utility</groupId>
+		<artifactId>net.kiena.utility</artifactId>
 		<version>0-alpha</version>
 	</parent>
-	<artifactId>net.kiena.utilities.core</artifactId>
-	<name>Utilities: Core</name>
+	<artifactId>net.kiena.utility.core</artifactId>
+	<name>.utility//Core</name>
 	<properties>
 		<netbeans.hint.licensePath>${project.basedir}/../licenseheader.txt</netbeans.hint.licensePath>
 	</properties>
