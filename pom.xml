@@ -58,6 +58,7 @@ limitations under the License.
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<netbeans.hint.licensePath>${project.basedir}/licenseheader.txt</netbeans.hint.licensePath>
+		<org.checkerframework.version>2.0.0</org.checkerframework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -66,19 +67,19 @@ limitations under the License.
 			<dependency>
 				<groupId>org.checkerframework</groupId>
 				<artifactId>checker</artifactId>
-				<version>1.9.13</version>
+				<version>${org.checkerframework.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.checkerframework</groupId>
 				<artifactId>checker-qual</artifactId>
-				<version>1.9.13</version>
+				<version>${org.checkerframework.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.checkerframework</groupId>
 				<artifactId>jdk8</artifactId>
-				<version>1.9.13</version>
+				<version>${org.checkerframework.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
