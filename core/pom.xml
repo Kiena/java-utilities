@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright © 2015–2016 Kiena
+Copyright © 2015–2017 Kiena
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ limitations under the License.
 	<artifactId>net.kiena.utility.core</artifactId>
 	<name>.utility//Core</name>
 	<properties>
-		<netbeans.hint.licensePath>${project.basedir}/../licenseheader.txt</netbeans.hint.licensePath>
+		<root.basedir>${project.parent.basedir}</root.basedir>
 	</properties>
 	<dependencies>
 		<dependency>
