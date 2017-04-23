@@ -60,6 +60,8 @@ limitations under the License.
 		<javadoc.header>&lt;strong&gt;${project.name} ${project.version}&lt;/strong&gt;</javadoc.header>
 		<javadoc.title>&lt;strong&gt;${project.name} ${project.version}&lt;br&gt;API Specification&lt;/strong&gt;</javadoc.title>
 		<javadoc.window.title>${project.name} ${project.version}</javadoc.window.title>
+		<!--maven.compiler.failOnWarning>true</maven.compiler.failOnWarning-->
+		<maven.compiler.fork>true</maven.compiler.fork>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<netbeans.hint.licensePath>${root.basedir}/licenseheader.txt</netbeans.hint.licensePath>
@@ -70,12 +72,6 @@ limitations under the License.
 	</properties>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.checkerframework</groupId>
-				<artifactId>checker</artifactId>
-				<version>${org.checkerframework.version}</version>
-				<scope>provided</scope>
-			</dependency>
 			<dependency>
 				<groupId>org.checkerframework</groupId>
 				<artifactId>checker-qual</artifactId>
@@ -156,7 +152,13 @@ limitations under the License.
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.1</version>
 				<configuration>
-					<fork>true</fork>
+					<annotationProcessorPaths>
+						<annotationProcessorPath>
+							<groupId>org.checkerframework</groupId>
+							<artifactId>checker</artifactId>
+							<version>${org.checkerframework.version}</version>
+						</annotationProcessorPath>
+					</annotationProcessorPaths>
 					<annotationProcessors>
 						<annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
 					</annotationProcessors>
