@@ -50,7 +50,6 @@ limitations under the License.
 		<module>core</module>
 	</modules>
 	<properties>
-		<annotatedJdk>${org.checkerframework:jdk8:jar}</annotatedJdk>
 		<argLine>-Dfile.encoding=UTF-8</argLine>
 		<checkstyle.config.location>${root.basedir}/checkstyle/checkstyle-configuration.xml</checkstyle.config.location>
 		<checkstyle.console>true</checkstyle.console>
@@ -60,10 +59,10 @@ limitations under the License.
 		<javadoc.header>&lt;strong&gt;${project.name} ${project.version}&lt;/strong&gt;</javadoc.header>
 		<javadoc.title>&lt;strong&gt;${project.name} ${project.version}&lt;br&gt;API Specification&lt;/strong&gt;</javadoc.title>
 		<javadoc.window.title>${project.name} ${project.version}</javadoc.window.title>
-		<!--maven.compiler.failOnWarning>true</maven.compiler.failOnWarning-->
+		<maven.compiler.failOnWarning>true</maven.compiler.failOnWarning>
 		<maven.compiler.fork>true</maven.compiler.fork>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>9</maven.compiler.source>
+		<maven.compiler.target>9</maven.compiler.target>
 		<netbeans.hint.licensePath>${root.basedir}/licenseheader.txt</netbeans.hint.licensePath>
 		<org.checkerframework.version>2.1.10</org.checkerframework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -79,12 +78,6 @@ limitations under the License.
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.checkerframework</groupId>
-				<artifactId>jdk8</artifactId>
-				<version>${org.checkerframework.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
 				<version>6.11</version>
@@ -93,34 +86,6 @@ limitations under the License.
 		</dependencies>
 	</dependencyManagement>
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.apache.maven.plugins</groupId>
-										<artifactId>maven-dependency-plugin</artifactId>
-										<versionRange>[2.0,)</versionRange>
-										<goals>
-											<goal>properties</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore/>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -151,41 +116,6 @@ limitations under the License.
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.1</version>
-				<configuration>
-					<annotationProcessorPaths>
-						<annotationProcessorPath>
-							<groupId>org.checkerframework</groupId>
-							<artifactId>checker</artifactId>
-							<version>${org.checkerframework.version}</version>
-						</annotationProcessorPath>
-					</annotationProcessorPaths>
-					<annotationProcessors>
-						<annotationProcessor>org.checkerframework.checker.nullness.NullnessChecker</annotationProcessor>
-					</annotationProcessors>
-					<compilerArgs>
-						<arg>-AcheckPurityAnnotations</arg>
-						<arg>-Alint=all</arg>
-						<arg>-AprintErrorStack</arg>
-						<arg>-AshowSuppressWarningKeys</arg>
-						<arg>-AskipDefs=Tests$</arg>
-						<arg>-Astubs=stb</arg>
-						<arg>-AstubWarnIfNotFound</arg>
-						<!--arg>-AsuggestPureMethods</arg-->
-						<arg>-Awarns</arg>
-						<arg>-Xbootclasspath/p:${annotatedJdk}</arg>
-					</compilerArgs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.10</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>properties</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -209,7 +139,7 @@ limitations under the License.
 					<additionalparam>-Xdoclint:none</additionalparam>
 					<doctitle>${javadoc.title}</doctitle>
 					<header>${javadoc.header}</header>
-					<javadocVersion>1.8</javadocVersion>
+					<javadocVersion>9</javadocVersion>
 					<windowtitle>${javadoc.window.title}</windowtitle>
 				</configuration>
 				<executions>
