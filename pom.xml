@@ -18,7 +18,7 @@ limitations under the License.
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.kiena.utility</groupId>
 	<artifactId>net.kiena.utility</artifactId>
-	<version>0-alpha</version>
+	<version>0-α</version>
 	<packaging>pom</packaging>
 	<name>.utility</name>
 	<url>http://kiena.net</url>

@@ -19,7 +19,7 @@ limitations under the License.
 	<parent>
 		<groupId>net.kiena.utility</groupId>
 		<artifactId>net.kiena.utility</artifactId>
-		<version>0-alpha</version>
+		<version>0-α</version>
 	</parent>
 	<artifactId>net.kiena.utility.core</artifactId>
 	<name>.utility//Core</name>
