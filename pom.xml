@@ -54,7 +54,7 @@ limitations under the License.
 		<checkstyle.config.location>${root.basedir}/checkstyle/checkstyle-configuration.xml</checkstyle.config.location>
 		<checkstyle.console>true</checkstyle.console>
 		<checkstyle.consoleOutput>true</checkstyle.consoleOutput>
-		<checkstyle.includes>*.md,*.properties,*.txt,*.xml,checkstyle/*,src/**/*.java,src/**/*.properties,src/**/*.xml</checkstyle.includes>
+		<checkstyle.includes>*.md,*.properties,*.txt,*.xml,checkstyle/*,src/**/*.java,src/**/*.properties,src/**/*.txt,src/**/*.xml</checkstyle.includes>
 		<checkstyle.resourceIncludes/><!-- Sources, resources, and their test counterparts are treated equally. -->
 		<javadoc.header>&lt;strong&gt;${project.name} ${project.version}&lt;/strong&gt;</javadoc.header>
 		<javadoc.title>&lt;strong&gt;${project.name} ${project.version}&lt;br&gt;API Specification&lt;/strong&gt;</javadoc.title>
