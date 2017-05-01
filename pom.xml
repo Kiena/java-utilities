@@ -136,7 +136,7 @@ limitations under the License.
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.4</version>
 				<configuration>
-					<additionalparam>-Xdoclint:none</additionalparam>
+					<additionalparam>-html5</additionalparam>
 					<doctitle>${javadoc.title}</doctitle>
 					<header>${javadoc.header}</header>
 					<javadocVersion>9</javadocVersion>
