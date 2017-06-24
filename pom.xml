@@ -46,6 +46,9 @@ limitations under the License.
 			<timezone>UTC+01:00</timezone>
 		</developer>
 	</developers>
+	<prerequisites>
+		<maven>3.5.0</maven>
+	</prerequisites>
 	<modules>
 		<module>core</module>
 	</modules>
@@ -116,6 +119,11 @@ limitations under the License.
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.1</version>
+				<configuration>
+					<compilerArgs>
+						<arg>-Xdoclint:all/protected</arg>
+					</compilerArgs>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
