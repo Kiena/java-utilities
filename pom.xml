@@ -46,9 +46,6 @@ limitations under the License.
 			<timezone>UTC+01:00</timezone>
 		</developer>
 	</developers>
-	<prerequisites>
-		<maven>3.5.0</maven>
-	</prerequisites>
 	<modules>
 		<module>core</module>
 	</modules>
@@ -124,6 +121,25 @@ limitations under the License.
 						<arg>-Xdoclint:all/protected</arg>
 					</compilerArgs>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<executions>
+					<execution>
+						<id>enforce</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.5.0,)</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
