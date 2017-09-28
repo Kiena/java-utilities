@@ -19,18 +19,15 @@ limitations under the License.
 	<parent>
 		<groupId>net.kiena.utility</groupId>
 		<artifactId>net.kiena.utility</artifactId>
-		<version>0-α</version>
+		<version>0-alpha</version>
 	</parent>
 	<artifactId>net.kiena.utility.core</artifactId>
+	<version>0-alpha</version>
 	<name>.utility//Core</name>
 	<properties>
-		<root.basedir>${project.parent.basedir}</root.basedir>
+		<root.project.basedir>${project.parent.basedir}</root.project.basedir>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.checkerframework</groupId>
-			<artifactId>checker-qual</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>

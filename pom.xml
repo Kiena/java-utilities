@@ -18,7 +18,7 @@ limitations under the License.
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.kiena.utility</groupId>
 	<artifactId>net.kiena.utility</artifactId>
-	<version>0-α</version>
+	<version>0-alpha</version>
 	<packaging>pom</packaging>
 	<name>.utility</name>
 	<url>http://kiena.net</url>
@@ -51,7 +51,7 @@ limitations under the License.
 	</modules>
 	<properties>
 		<argLine>-Dfile.encoding=UTF-8</argLine>
-		<checkstyle.config.location>${root.basedir}/checkstyle/checkstyle-configuration.xml</checkstyle.config.location>
+		<checkstyle.config.location>${root.project.basedir}/checkstyle/checkstyle-configuration.xml</checkstyle.config.location>
 		<checkstyle.console>true</checkstyle.console>
 		<checkstyle.consoleOutput>true</checkstyle.consoleOutput>
 		<checkstyle.includes>*.md,*.properties,*.txt,*.xml,checkstyle/*,src/**/*.java,src/**/*.properties,src/**/*.txt,src/**/*.xml</checkstyle.includes>
@@ -63,20 +63,13 @@ limitations under the License.
 		<maven.compiler.fork>true</maven.compiler.fork>
 		<maven.compiler.source>9</maven.compiler.source>
 		<maven.compiler.target>9</maven.compiler.target>
-		<netbeans.hint.licensePath>${root.basedir}/licenseheader.txt</netbeans.hint.licensePath>
-		<org.checkerframework.version>2.1.10</org.checkerframework.version>
+		<netbeans.hint.licensePath>${root.project.basedir}/licenseheader.txt</netbeans.hint.licensePath>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<root.basedir>${project.basedir}</root.basedir>
+		<root.project.basedir>${project.basedir}</root.project.basedir>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.checkerframework</groupId>
-				<artifactId>checker-qual</artifactId>
-				<version>${org.checkerframework.version}</version>
-				<scope>provided</scope>
-			</dependency>
 			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
@@ -91,7 +84,7 @@ limitations under the License.
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>2.17</version>
 				<configuration>
-					<propertyExpansion>root.basedir=${root.basedir}</propertyExpansion>
+					<propertyExpansion>root.project.basedir=${root.project.basedir}</propertyExpansion>
 					<!-- This way any file – e.g. this pom.xml – can be checked. -->
 					<sourceDirectories>${project.basedir}</sourceDirectories>
 					<testSourceDirectories/>
@@ -100,7 +93,7 @@ limitations under the License.
 					<dependency>
 						<groupId>com.puppycrawl.tools</groupId>
 						<artifactId>checkstyle</artifactId>
-						<version>7.6.1</version>
+						<version>8.2</version>
 					</dependency>
 				</dependencies>
 				<executions>
@@ -115,7 +108,7 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.1</version>
+				<version>3.7.0</version>
 				<configuration>
 					<compilerArgs>
 						<arg>-Xdoclint:all/protected</arg>
@@ -124,7 +117,7 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>1.4.1</version>
+				<version>3.0.0-M1</version>
 				<executions>
 					<execution>
 						<id>enforce</id>
@@ -143,7 +136,7 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
+				<version>3.0.2</version>
 				<configuration>
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
@@ -158,12 +151,11 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
+				<version>3.0.0-M1</version>
 				<configuration>
 					<additionalparam>-html5</additionalparam>
 					<doctitle>${javadoc.title}</doctitle>
 					<header>${javadoc.header}</header>
-					<javadocVersion>9</javadocVersion>
 					<windowtitle>${javadoc.window.title}</windowtitle>
 				</configuration>
 				<executions>
@@ -177,7 +169,7 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20</version>
+				<version>2.20.1</version>
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.basedir}/src/test/resources/testng.xml</suiteXmlFile>

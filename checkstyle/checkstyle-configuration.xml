@@ -24,11 +24,11 @@ limitations under the License.
 	<module name="JavadocPackage"/>
 	<module name="NewlineAtEndOfFile"/>
 	<module name="RegexpHeader">
-		<property name="headerFile" value="${root.basedir}/checkstyle/header.regexp.java.txt"/>
+		<property name="headerFile" value="${root.project.basedir}/checkstyle/header.regexp.java.txt"/>
 		<property name="fileExtensions" value="java"/>
 	</module>
 	<module name="RegexpHeader">
-		<property name="headerFile" value="${root.basedir}/checkstyle/header.regexp.xml.txt"/>
+		<property name="headerFile" value="${root.project.basedir}/checkstyle/header.regexp.xml.txt"/>
 		<property name="fileExtensions" value="xml"/>
 	</module>
 	<module name="RegexpSingleline">
@@ -45,7 +45,7 @@ limitations under the License.
 		<property name="message" value="Line has trailing whitespace."/>
 	</module>
 	<module name="SuppressionFilter">
-		<property name="file" value="${root.basedir}/checkstyle/checkstyle-suppressions.xml"/>
+		<property name="file" value="${root.project.basedir}/checkstyle/checkstyle-suppressions.xml"/>
 	</module>
 	<module name="TreeWalker">
 		<property name="tabWidth" value="2"/>
