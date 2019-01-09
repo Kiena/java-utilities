@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright © 2015–2017 Kiena
+Copyright © 2015–2019 Kiena
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ limitations under the License.
 	<version>0-alpha</version>
 	<name>.utility//Core</name>
 	<properties>
-		<root.project.basedir>${project.parent.basedir}</root.project.basedir>
+		<root.project.basedir>${project.basedir}/..</root.project.basedir>
 	</properties>
 	<dependencies>
 		<dependency>

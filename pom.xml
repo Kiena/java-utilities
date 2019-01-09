@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright © 2013–2017 Kiena
+Copyright © 2013–2019 Kiena
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ limitations under the License.
 	<developers>
 		<developer>
 			<id>Kiena</id>
-			<name>Kiena</name>
 			<url>http://kiena.net</url>
 			<roles>
 				<role>architect</role>
@@ -49,24 +48,35 @@ limitations under the License.
 	<modules>
 		<module>core</module>
 	</modules>
+	<scm>
+		<url>https://github.com/Kiena/java-utilities</url>
+	</scm>
 	<properties>
 		<argLine>-Dfile.encoding=UTF-8</argLine>
-		<checkstyle.config.location>${root.project.basedir}/checkstyle/checkstyle-configuration.xml</checkstyle.config.location>
+		<author>false</author>
+		<checkstyle.config.location>net/kiena/build/configuration/checkstyle/checkstyle-configuration.xml</checkstyle.config.location>
 		<checkstyle.console>true</checkstyle.console>
 		<checkstyle.consoleOutput>true</checkstyle.consoleOutput>
-		<checkstyle.includes>*.md,*.properties,*.txt,*.xml,checkstyle/*,src/**/*.java,src/**/*.properties,src/**/*.txt,src/**/*.xml</checkstyle.includes>
+		<checkstyle.includes>*.md,*.properties,*.sh,*.txt,*.xml,checkstyle/*,spotbugs/*,src/**/*.java,src/**/*.properties,src/**/*.txt,src/**/*.xml</checkstyle.includes>
 		<checkstyle.resourceIncludes/><!-- Sources, resources, and their test counterparts are treated equally. -->
+		<includeScope>runtime</includeScope>
+		<javadoc.excludePackageNames>*.internal.*</javadoc.excludePackageNames>
 		<javadoc.header>&lt;strong&gt;${project.name} ${project.version}&lt;/strong&gt;</javadoc.header>
+		<javadoc.lint>all</javadoc.lint>
+		<javadoc.show>protected</javadoc.show>
 		<javadoc.title>&lt;strong&gt;${project.name} ${project.version}&lt;br&gt;API Specification&lt;/strong&gt;</javadoc.title>
 		<javadoc.window.title>${project.name} ${project.version}</javadoc.window.title>
 		<maven.compiler.failOnWarning>true</maven.compiler.failOnWarning>
 		<maven.compiler.fork>true</maven.compiler.fork>
-		<maven.compiler.source>9</maven.compiler.source>
-		<maven.compiler.target>9</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 		<netbeans.hint.licensePath>${root.project.basedir}/licenseheader.txt</netbeans.hint.licensePath>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<root.project.basedir>${project.basedir}</root.project.basedir>
+		<spotbugs.effort>Max</spotbugs.effort>
+		<spotbugs.maxRank>20</spotbugs.maxRank>
+		<spotbugs.threshold>Low</spotbugs.threshold>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -79,12 +89,50 @@ limitations under the License.
 		</dependencies>
 	</dependencyManagement>
 	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/resources-filtered</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>${root.project.basedir}</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>LICENSE.txt</include>
+					<include>NOTICE.txt</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>3.1.10</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs</artifactId>
+						<version>3.1.10</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>process-test-classes-check</id>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.17</version>
+				<version>3.0.0</version>
 				<configuration>
-					<propertyExpansion>root.project.basedir=${root.project.basedir}</propertyExpansion>
+					<propertyExpansion>configuration.directory=${root.project.basedir}/checkstyle</propertyExpansion>
 					<!-- This way any file – e.g. this pom.xml – can be checked. -->
 					<sourceDirectories>${project.basedir}</sourceDirectories>
 					<testSourceDirectories/>
@@ -93,13 +141,18 @@ limitations under the License.
 					<dependency>
 						<groupId>com.puppycrawl.tools</groupId>
 						<artifactId>checkstyle</artifactId>
-						<version>8.2</version>
+						<version>8.15</version>
+					</dependency>
+					<dependency>
+						<groupId>net.kiena.build.configuration.checkstyle</groupId>
+						<artifactId>net.kiena.build.configuration.checkstyle</artifactId>
+						<version>0-alpha</version>
 					</dependency>
 				</dependencies>
 				<executions>
 					<execution>
-						<id>validate</id>
-						<phase>validate</phase>
+						<id>process-test-resources-check</id>
+						<phase>process-test-resources</phase>
 						<goals>
 							<goal>check</goal>
 						</goals>
@@ -108,10 +161,10 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
+				<version>3.8.0</version>
 				<configuration>
 					<compilerArgs>
-						<arg>-Xdoclint:all/protected</arg>
+						<arg>-Xdoclint:all/private</arg>
 					</compilerArgs>
 				</configuration>
 			</plugin>
@@ -120,7 +173,7 @@ limitations under the License.
 				<version>3.0.0-M1</version>
 				<executions>
 					<execution>
-						<id>enforce</id>
+						<id>default-enforce</id>
 						<goals>
 							<goal>enforce</goal>
 						</goals>
@@ -140,9 +193,6 @@ limitations under the License.
 				<configuration>
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
-						<manifest>
-							<addClasspath>true</addClasspath>
-						</manifest>
 						<manifestEntries>
 							<Sealed>true</Sealed>
 						</manifestEntries>
@@ -151,16 +201,19 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.0.0-M1</version>
+				<version>3.0.1</version>
 				<configuration>
 					<additionalparam>-html5</additionalparam>
+					<doclint>${javadoc.lint}</doclint>
 					<doctitle>${javadoc.title}</doctitle>
+					<excludePackageNames>${javadoc.excludePackageNames}</excludePackageNames>
 					<header>${javadoc.header}</header>
+					<show>${javadoc.show}</show>
 					<windowtitle>${javadoc.window.title}</windowtitle>
 				</configuration>
 				<executions>
 					<execution>
-						<id>attach-javadocs</id>
+						<id>default-jar</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
@@ -169,7 +222,7 @@ limitations under the License.
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20.1</version>
+				<version>2.22.1</version>
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>${project.basedir}/src/test/resources/testng.xml</suiteXmlFile>
@@ -179,15 +232,16 @@ limitations under the License.
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.9</version>
+				<version>0.8.2</version>
 				<executions>
 					<execution>
+						<id>default-prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
 					<execution>
-						<id>report</id>
+						<id>prepare-package-report</id>
 						<phase>prepare-package</phase>
 						<goals>
 							<goal>report</goal>
@@ -197,4 +251,15 @@ limitations under the License.
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>internal</id>
+			<properties>
+				<javadoc.excludePackageNames/>
+				<javadoc.show>private</javadoc.show>
+				<javadoc.title>&lt;strong&gt;${project.name} ${project.version}&lt;br&gt;Internal API Specification&lt;/strong&gt;</javadoc.title>
+				<javadoc.window.title>${project.name} ${project.version} (internal)</javadoc.window.title>
+			</properties>
+		</profile>
+	</profiles>
 </project>
